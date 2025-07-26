@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniLink - Marketing That Matters</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1DB584;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-gradient: linear-gradient(135deg, #1DB584 0%, #15a073 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 5%;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1DB584 0%, transparent 50%);
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.15; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #1DB584 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Interactive Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(29, 181, 132, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            fill: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Interactive Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(29, 181, 132, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 5rem 5%;
+            background: var(--bg-secondary);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 5rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 5rem 5%;
+            background: var(--bg-secondary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--bg-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(29, 181, 132, 0.2);
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--accent-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .product-name {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .product-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .product-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-dark);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .check-mark {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            padding: 5rem 5%;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(29, 181, 132, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--bg-secondary);
+            text-align: center;
+            border-top: 1px solid var(--bg-tertiary);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .company-info {
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Page specific styles */
+        .page-content {
+            padding: 8rem 5% 5rem;
+            min-height: 100vh;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            animation-delay: 0.3s;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            animation-delay: 0.6s;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            top: 20px;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hide pages initially */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <svg class="logo" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="35" font-family="Arial, sans-serif" font-size="30" font-weight="bold">
+                    <tspan fill="#ffffff">uni</tspan><tspan fill="#ffffff">i</tspan><tspan fill="#ffffff">ink</tspan>
+                    <tspan fill="#1DB584" font-size="20" dy="-10">↗</tspan>
+                </text>
+                <text x="10" y="48" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">marketing that matters</text>
+            </svg>
+            <div class="nav-links">
+                <a href="#home" onclick="showPage('home')">Home</a>
+                <a href="#about" onclick="showPage('about')">About Us</a>
+                <a href="#services" onclick="showPage('services')">Services</a>
+                <a href="#products" onclick="showPage('products')">Products</a>
+                <a href="#contact" onclick="showPage('contact')">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>Marketing Automation Redefined</h1>
+                <p>Simplify, Automate, and Scale Your Marketing Efforts</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card" onclick="showPage('services')">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <h3>Smart Automation</h3>
+                        <p>Automate repetitive tasks and focus on strategy. Our AI-powered tools handle the mundane while you drive growth.</p>
+                    </div>
+                    
+                    <div class="feature-card" onclick="showPage('services')">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        <h3>Unified Dashboard</h3>
+                        <p>Manage all your social channels, campaigns, and analytics from one powerful, intuitive interface.</p>
+                    </div>
+                    
+                    <div class="feature-card" onclick="showPage('services')">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                        <h3>Team Collaboration</h3>
+                        <p>Work seamlessly with your team. Share insights, assign tasks, and stay synchronized across all marketing activities.</p>
+                    </div>
+                </div>
+                
+                <a href="#products" class="cta-button" onclick="showPage('products')">Explore Our Products</a>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">10x</div>
+                    <div class="stat-label">Faster Response Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Time Saved on Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">360°</div>
+                    <div class="stat-label">Customer View</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Smart Monitoring</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive marketing solutions tailored for modern businesses</p>
+            </div>
+            <div class="services-grid">
+                <a href="#social-media-management" class="service-card" onclick="showServicePage('social-media-management')">
+                    <h3>Social Media Management</h3>
+                    <p>Centralize your social presence. Schedule, publish, and analyze across all platforms from one dashboard.</p>
+                    <svg width="300" height="100" viewBox="0 0 300 100" style="margin-top: 1rem;">
+                        <circle cx="50" cy="50" r="30" fill="#1DB584" opacity="0.2"/>
+                        <circle cx="150" cy="50" r="30" fill="#1DB584" opacity="0.3"/>
+                        <circle cx="250" cy="50" r="30" fill="#1DB584" opacity="0.4"/>
+                        <path d="M80,50 L120,50" stroke="#1DB584" stroke-width="2"/>
+                        <path d="M180,50 L220,50" stroke="#1DB584" stroke-width="2"/>
+                    </svg>
+                </a>
+                
+                <a href="#marketing-automation" class="service-card" onclick="showServicePage('marketing-automation')">
+                    <h3>Marketing Automation</h3>
+                    <p>Set up intelligent workflows that nurture leads, engage customers, and drive conversions automatically.</p>
+                    <svg width="300" height="100" viewBox="0 0 300 100" style="margin-top: 1rem;">
+                        <rect x="20" y="30" width="60" height="40" fill="#1DB584" opacity="0.2" rx="5"/>
+                        <rect x="120" y="30" width="60" height="40" fill="#1DB584" opacity="0.3" rx="5"/>
+                        <rect x="220" y="30" width="60" height="40" fill="#1DB584" opacity="0.4" rx="5"/>
+                        <path d="M80,50 L120,50 M180,50 L220,50" stroke="#1DB584" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
+                                <path d="M0,0 L10,5 L0,10" fill="none" stroke="#1DB584" stroke-width="2"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </a>
+                
+                <a href="#analytics-reporting" class="service-card" onclick="showServicePage('analytics-reporting')">
+                    <h3>Analytics & Reporting</h3>
+                    <p>Get deep insights into your marketing performance with real-time analytics and customizable reports.</p>
+                    <svg width="300" height="100" viewBox="0 0 300 100" style="margin-top: 1rem;">
+                        <path d="M20,80 L80,40 L140,60 L200,20 L260,50" fill="none" stroke="#1DB584" stroke-width="3"/>
+                        <circle cx="20" cy="80" r="5" fill="#1DB584"/>
+                        <circle cx="80" cy="40" r="5" fill="#1DB584"/>
+                        <circle cx="140" cy="60" r="5" fill="#1DB584"/>
+                        <circle cx="200" cy="20" r="5" fill="#1DB584"/>
+                        <circle cx="260" cy="50" r="5" fill="#1DB584"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="section-header">
+                <h2>Our Product Suite</h2>
+                <p>Powerful tools designed to transform your marketing</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">📊</div>
+                    <h3 class="product-name">SocialSync Pro</h3>
+                    <p>All-in-one social media management platform</p>
+                    <ul class="product-features">
+                        <li>Multi-platform scheduling</li>
+                        <li>Content calendar</li>
+                        <li>Team collaboration</li>
+                        <li>Analytics dashboard</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Contact Sales</a>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">🚀</div>
+                    <h3 class="product-name">AutoFlow Engine</h3>
+                    <p>Intelligent marketing automation system</p>
+                    <ul class="product-features">
+                        <li>Visual workflow builder</li>
+                        <li>AI-powered triggers</li>
+                        <li>Lead scoring</li>
+                        <li>Email automation</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Contact Sales</a>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">💬</div>
+                    <h3 class="product-name">ResponseAI</h3>
+                    <p>Smart customer engagement platform</p>
+                    <ul class="product-features">
+                        <li>24/7 auto-response</li>
+                        <li>Sentiment analysis</li>
+                        <li>Smart escalation</li>
+                        <li>Multi-channel support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Contact Sales</a>
+                </div>
+            </div>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>SocialSync Pro</th>
+                            <th>AutoFlow Engine</th>
+                            <th>ResponseAI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Social Media Management</td>
+                            <td class="check-mark">✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing Automation</td>
+                            <td>-</td>
+                            <td class="check-mark">✓</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>AI-Powered Responses</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td class="check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Analytics & Reporting</td>
+                            <td class="check-mark">✓</td>
+                            <td class="check-mark">✓</td>
+                            <td class="check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Team Collaboration</td>
+                            <td class="check-mark">✓</td>
+                            <td class="check-mark">✓</td>
+                            <td class="check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td>API Integration</td>
+                            <td class="check-mark">✓</td>
+                            <td class="check-mark">✓</td>
+                            <td class="check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Workflows</td>
+                            <td>-</td>
+                            <td class="check-mark">✓</td>
+                            <td class="check-mark">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Our Journey</h2>
+                <p>Building the future of marketing management</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Foundation</h3>
+                        <p>Started with a vision to simplify marketing for businesses of all sizes. Our founders recognized the complexity in managing multiple marketing channels.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>First Product Launch</h3>
+                        <p>Released SocialSync Pro, revolutionizing how businesses manage their social media presence across multiple platforms.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>AI Integration</h3>
+                        <p>Introduced ResponseAI, bringing intelligent automation to customer engagement and support.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Expansion</h3>
+                        <p>Launched AutoFlow Engine, completing our suite of marketing automation tools and serving thousands of businesses globally.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem;">
+                <h3 style="font-size: 2rem; margin-bottom: 2rem;">Our Mission</h3>
+                <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary);">
+                    At UniLink, we believe that marketing teams should spend less time on manual tasks and more time on strategy and creativity. We're focused on developing software that simplifies the complex, automates the repetitive, and enhances customer engagement at scale.
+                </p>
+                
+                <div class="feature-grid" style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div class="feature-card">
+                        <h3>Innovation First</h3>
+                        <p>Constantly pushing boundaries to bring cutting-edge solutions to marketing challenges.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Customer Success</h3>
+                        <p>Your growth is our success. We're committed to helping you achieve your marketing goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Choose the perfect solution for your marketing needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <a href="#social-media-management" class="service-card" onclick="showServicePage('social-media-management')">
+                    <h3>Social Media Management</h3>
+                    <p>Take control of your social presence with our comprehensive management platform.</p>
+                    <div style="margin-top: 1rem;">Learn More →</div>
+                </a>
+                
+                <a href="#marketing-automation" class="service-card" onclick="showServicePage('marketing-automation')">
+                    <h3>Marketing Automation</h3>
+                    <p>Automate your marketing workflows and scale your efforts effortlessly.</p>
+                    <div style="margin-top: 1rem;">Learn More →</div>
+                </a>
+                
+                <a href="#analytics-reporting" class="service-card" onclick="showServicePage('analytics-reporting')">
+                    <h3>Analytics & Reporting</h3>
+                    <p>Make data-driven decisions with comprehensive analytics and insights.</p>
+                    <div style="margin-top: 1rem;">Learn More →</div>
+                </a>
+                
+                <a href="#customer-engagement" class="service-card" onclick="showServicePage('customer-engagement')">
+                    <h3>Customer Engagement</h3>
+                    <p>Build lasting relationships with intelligent engagement tools.</p>
+                    <div style="margin-top: 1rem;">Learn More →</div>
+                </a>
+                
+                <a href="#content-scheduling" class="service-card" onclick="showServicePage('content-scheduling')">
+                    <h3>Content Scheduling</h3>
+                    <p>Plan, create, and schedule content across all channels seamlessly.</p>
+                    <div style="margin-top: 1rem;">Learn More →</div>
+                </a>
+                
+                <a href="#team-collaboration" class="service-card" onclick="showServicePage('team-collaboration')">
+                    <h3>Team Collaboration</h3>
+                    <p>Enhance teamwork with shared workspaces and real-time collaboration.</p>
+                    <div style="margin-top: 1rem;">Learn More →</div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Service Detail Pages -->
+    <div id="social-media-management" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Social Media Management</h2>
+                <p>Unify your social presence across all platforms</p>
+            </div>
+            
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <svg width="100%" height="300" viewBox="0 0 800 300">
+                    <rect x="350" y="100" width="100" height="100" fill="#1DB584" opacity="0.3" rx="10"/>
+                    <text x="400" y="155" text-anchor="middle" fill="white" font-size="16" font-weight="bold">UniLink</text>
+                    
+                    <circle cx="150" cy="80" r="40" fill="#1877F2" opacity="0.8"/>
+                    <circle cx="650" cy="80" r="40" fill="#E4405F" opacity="0.8"/>
+                    <circle cx="150" cy="220" r="40" fill="#1DA1F2" opacity="0.8"/>
+                    <circle cx="650" cy="220" r="40" fill="#0077B5" opacity="0.8"/>
+                    
+                    <path d="M190,80 L350,150 M450,150 L610,80" stroke="#1DB584" stroke-width="2"/>
+                    <path d="M190,220 L350,150 M450,150 L610,220" stroke="#1DB584" stroke-width="2"/>
+                </svg>
+                
+                <div class="feature-grid" style="margin-top: 3rem;">
+                    <div class="feature-card">
+                        <h3>Multi-Platform Publishing</h3>
+                        <p>Post to Facebook, Instagram, Twitter, LinkedIn, and more from one dashboard. Schedule content weeks in advance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Content Calendar</h3>
+                        <p>Visualize your content strategy with our intuitive calendar view. Drag and drop to reschedule posts instantly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Engagement Tracking</h3>
+                        <p>Monitor likes, comments, shares, and mentions in real-time. Never miss an important customer interaction.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Get Started Today</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Marketing Automation Service Page -->
+    <div id="marketing-automation" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Marketing Automation</h2>
+                <p>Intelligent workflows that work while you sleep</p>
+            </div>
+            
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <svg width="100%" height="300" viewBox="0 0 800 300">
+                    <rect x="50" y="130" width="100" height="40" fill="#1DB584" opacity="0.3" rx="5"/>
+                    <text x="100" y="155" text-anchor="middle" fill="white" font-size="14">Trigger</text>
+                    
+                    <rect x="250" y="130" width="100" height="40" fill="#1DB584" opacity="0.4" rx="5"/>
+                    <text x="300" y="155" text-anchor="middle" fill="white" font-size="14">Condition</text>
+                    
+                    <rect x="450" y="80" width="100" height="40" fill="#1DB584" opacity="0.5" rx="5"/>
+                    <text x="500" y="105" text-anchor="middle" fill="white" font-size="14">Action A</text>
+                    
+                    <rect x="450" y="180" width="100" height="40" fill="#1DB584" opacity="0.5" rx="5"/>
+                    <text x="500" y="205" text-anchor="middle" fill="white" font-size="14">Action B</text>
+                    
+                    <rect x="650" y="130" width="100" height="40" fill="#1DB584" opacity="0.6" rx="5"/>
+                    <text x="700" y="155" text-anchor="middle" fill="white" font-size="14">Result</text>
+                    
+                    <path d="M150,150 L250,150" stroke="#1DB584" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M350,150 L400,100 L450,100" stroke="#1DB584" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M350,150 L400,200 L450,200" stroke="#1DB584" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M550,100 L600,150 L650,150" stroke="#1DB584" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M550,200 L600,150 L650,150" stroke="#1DB584" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
+                            <path d="M0,0 L10,5 L0,10" fill="#1DB584"/>
+                        </marker>
+                    </defs>
+                </svg>
+                
+                <div class="feature-grid" style="margin-top: 3rem;">
+                    <div class="feature-card">
+                        <h3>Visual Workflow Builder</h3>
+                        <p>Create complex automation flows with our drag-and-drop interface. No coding required.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Smart Triggers</h3>
+                        <p>Set up triggers based on user behavior, time, events, or custom conditions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Lead Nurturing</h3>
+                        <p>Automatically score and nurture leads through personalized journey paths.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Start Automating</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Analytics Service Page -->
+    <div id="analytics-reporting" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Analytics & Reporting</h2>
+                <p>Transform data into actionable insights</p>
+            </div>
+            
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <svg width="100%" height="300" viewBox="0 0 800 300">
+                    <rect x="50" y="50" width="700" height="200" fill="none" stroke="#333" stroke-width="2" rx="10"/>
+                    
+                    <path d="M100,200 L200,150 L300,170 L400,120 L500,140 L600,100 L700,130" 
+                          fill="none" stroke="#1DB584" stroke-width="3"/>
+                    <path d="M100,200 L200,150 L300,170 L400,120 L500,140 L600,100 L700,130 L700,200 L100,200" 
+                          fill="#1DB584" opacity="0.1"/>
+                    
+                    <circle cx="100" cy="200" r="5" fill="#1DB584"/>
+                    <circle cx="200" cy="150" r="5" fill="#1DB584"/>
+                    <circle cx="300" cy="170" r="5" fill="#1DB584"/>
+                    <circle cx="400" cy="120" r="5" fill="#1DB584"/>
+                    <circle cx="500" cy="140" r="5" fill="#1DB584"/>
+                    <circle cx="600" cy="100" r="5" fill="#1DB584"/>
+                    <circle cx="700" cy="130" r="5" fill="#1DB584"/>
+                    
+                    <text x="400" y="30" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Performance Over Time</text>
+                </svg>
+                
+                <div class="feature-grid" style="margin-top: 3rem;">
+                    <div class="feature-card">
+                        <h3>Real-Time Dashboards</h3>
+                        <p>Monitor your marketing performance with live, customizable dashboards that update in real-time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Custom Reports</h3>
+                        <p>Build reports tailored to your needs. Export to PDF, Excel, or share via custom links.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Predictive Analytics</h3>
+                        <p>Use AI-powered insights to predict trends and optimize your marketing strategy.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">See Your Data</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Additional Service Pages -->
+    <div id="customer-engagement" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Customer Engagement</h2>
+                <p>Build meaningful connections at scale</p>
+            </div>
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Engage with your customers across all touchpoints with intelligent, personalized interactions.</p>
+                <a href="#contact" class="cta-button" onclick="showPage('contact')">Learn More</a>
+            </div>
+        </section>
+    </div>
+
+    <div id="content-scheduling" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Content Scheduling</h2>
+                <p>Plan your content strategy with precision</p>
+            </div>
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Schedule weeks or months of content in advance. Our smart scheduling ensures optimal posting times.</p>
+                <a href="#contact" class="cta-button" onclick="showPage('contact')">Start Scheduling</a>
+            </div>
+        </section>
+    </div>
+
+    <div id="team-collaboration" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Team Collaboration</h2>
+                <p>Work together, achieve more</p>
+            </div>
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Streamline your team's workflow with shared workspaces, task assignments, and real-time collaboration tools.</p>
+                <a href="#contact" class="cta-button" onclick="showPage('contact')">Empower Your Team</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Products Page -->
+    <div id="products" class="page">
+        <section class="page-content">
+            <div class="section-header">
+                <h2>Our Products</h2>
+                <p>Choose the right tools for your marketing success</p>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">📊</div>
+                    <h3 class="product-name">SocialSync Pro</h3>
+                    <p>Complete social media management solution</p>
+                    <ul class="product-features">
+                        <li>Multi-platform scheduling</li>
+                        <li>Content calendar</li>
+                        <li>Team collaboration</li>
+                        <li>Analytics dashboard</li>
+                        <li>Engagement tracking</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Contact Sales</a>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">🚀</div>
+                    <h3 class="product-name">AutoFlow Engine</h3>
+                    <p>Advanced marketing automation platform</p>
+                    <ul class="product-features">
+                        <li>Visual workflow builder</li>
+                        <li>AI-powered triggers</li>
+                        <li>Lead scoring</li>
+                        <li>Email automation</li>
+                        <li>A/B testing</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Contact Sales</a>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">💬</div>
+                    <h3 class="product-name">ResponseAI</h3>
+                    <p>Intelligent customer response system</p>
+                    <ul class="product-features">
+                        <li>24/7 auto-response</li>
+                        <li>Sentiment analysis</li>
+                        <li>Smart escalation</li>
+                        <li>Multi-channel support</li>
+                        <li>Response templates</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" onclick="showPage('contact')">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="contact-section">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Let's discuss how UniLink can transform your marketing</p>
+            </div>
+            
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Thank You Page -->
+    <div id="thank-you" class="page">
+        <section class="page-content" style="text-align: center;">
+            <h2 style="font-size: 3rem; margin-bottom: 2rem;">Thank you for showing interest</h2>
+            <p style="font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 4rem;">Someone will review and get back.</p>
+            
+            <div style="margin-top: 4rem;">
+                <h3 style="font-size: 2rem; margin-bottom: 3rem;">Services You Can Explore Till Then</h3>
+                
+                <div class="services-grid">
+                    <a href="#social-media-management" class="service-card" onclick="showServicePage('social-media-management')">
+                        <h3>Social Media Management</h3>
+                        <p>Learn how we can transform your social media presence</p>
+                    </a>
+                    
+                    <a href="#marketing-automation" class="service-card" onclick="showServicePage('marketing-automation')">
+                        <h3>Marketing Automation</h3>
+                        <p>Discover the power of intelligent automation</p>
+                    </a>
+                    
+                    <a href="#analytics-reporting" class="service-card" onclick="showServicePage('analytics-reporting')">
+                        <h3>Analytics & Reporting</h3>
+                        <p>See how data can drive your marketing decisions</p>
+                    </a>
+                </div>
+                
+                <a href="#home" class="cta-button" onclick="showPage('home')" style="margin-top: 3rem;">Back to Home</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="company-info">
+                <p><strong>UniLink</strong></p>
+                <p>Module A, 10th floor, Magnum Block</p>
+                <p>MCN Nagar Extension, Thoraipakkam</p>
+                <p>Tamil Nadu 600097, IN</p>
+                <p style="margin-top: 1rem;">unilinkmarketing.in</p>
+            </div>
+            <p style="color: var(--text-secondary);">© 2024 UniLink. Marketing that matters.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showServicePage(serviceId) {
+            showPage(serviceId);
+        }
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            showPage('thank-you');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('onclick')) return;
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.5)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards and service cards
+        document.querySelectorAll('.feature-card, .service-card, .product-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
